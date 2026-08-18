@@ -905,7 +905,13 @@ func (w *Worktree) Clean(opts *CleanOptions) error {
 	if err != nil {
 		return err
 	}
-	return w.doClean(s, opts, root, files)
+	if err := w.doClean(s, opts, root, files); err != nil {
+		return err
+	}
+	if !opts.IgnoredFiles {
+		return nil
+	}
+	return w.cleanIgnored(root)
 }
 
 func (w *Worktree) doClean(status Status, opts *CleanOptions, dir string, files []os.FileInfo) error {

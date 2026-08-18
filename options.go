@@ -766,6 +766,11 @@ const (
 // CleanOptions describes how a clean should be performed.
 type CleanOptions struct {
 	Dir bool
+	// IgnoredFiles also removes files excluded by gitignore, matching the -x in
+	// `git clean -fdx`. Without it Clean removes only UNTRACKED files: ignored
+	// paths never appear in Status, so build output and generated artifacts
+	// survive a clean that was meant to leave a pristine tree.
+	IgnoredFiles bool
 }
 
 // GrepOptions describes how a grep should be performed.
