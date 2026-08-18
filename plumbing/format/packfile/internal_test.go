@@ -10,8 +10,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/go-git/go-git/v5/plumbing"
-	gogitbinary "github.com/go-git/go-git/v5/utils/binary"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	gogitbinary "github.com/lunarhue/metallic-flock-go-git/v5/utils/binary"
 )
 
 func TestParserRejectsDeepDeltaChain(t *testing.T) {

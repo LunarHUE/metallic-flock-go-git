@@ -9,7 +9,7 @@ import (
 	"io"
 	"math"
 
-	"github.com/go-git/go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
 )
 
 // ErrIntegerOverflow is returned when a Git-format variable-width integer

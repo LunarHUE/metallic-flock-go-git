@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/cache"
-	"github.com/go-git/go-git/v5/plumbing/storer"
-	"github.com/go-git/go-git/v5/utils/ioutil"
-	"github.com/go-git/go-git/v5/utils/sync"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/cache"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/storer"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/ioutil"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/sync"
 )
 
 var (

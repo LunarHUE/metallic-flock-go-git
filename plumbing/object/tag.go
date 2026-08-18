@@ -6,10 +6,10 @@ import (
 	"strings"
 
 	"github.com/ProtonMail/go-crypto/openpgp"
-	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/storer"
-	"github.com/go-git/go-git/v5/utils/ioutil"
-	"github.com/go-git/go-git/v5/utils/sync"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/storer"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/ioutil"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/sync"
 )
 
 // ErrMalformedTag is returned when a tag object cannot be decoded because

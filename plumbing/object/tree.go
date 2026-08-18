@@ -10,12 +10,12 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/go-git/go-git/v5/internal/pathutil"
-	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/filemode"
-	"github.com/go-git/go-git/v5/plumbing/storer"
-	"github.com/go-git/go-git/v5/utils/ioutil"
-	"github.com/go-git/go-git/v5/utils/sync"
+	"github.com/lunarhue/metallic-flock-go-git/v5/internal/pathutil"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/filemode"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/storer"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/ioutil"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/sync"
 )
 
 const (
