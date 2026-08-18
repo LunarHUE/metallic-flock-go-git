@@ -1347,6 +1347,10 @@ func commitIterFunc(order LogOrder) func(c *object.Commit) object.CommitIter {
 		return func(c *object.Commit) object.CommitIter {
 			return object.NewCommitIterCTime(c, nil, nil)
 		}
+	case LogOrderTopo:
+		return func(c *object.Commit) object.CommitIter {
+			return object.NewCommitIterTopoOrder(c, nil, nil)
+		}
 	}
 	return nil
 }

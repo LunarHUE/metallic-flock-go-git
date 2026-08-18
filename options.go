@@ -477,6 +477,11 @@ const (
 	LogOrderDFSPost
 	LogOrderBSF
 	LogOrderCommitterTime
+	// LogOrderTopo is git's --topo-order: a commit is never returned before
+	// every commit listing it as a parent has been returned. Unlike
+	// LogOrderCommitterTime it keeps concurrently-developed branches contiguous
+	// instead of interleaving them by date.
+	LogOrderTopo
 )
 
 // LogOptions describes how a log action should be performed.
