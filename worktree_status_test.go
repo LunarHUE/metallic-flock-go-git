@@ -9,9 +9,9 @@ import (
 	"github.com/go-git/go-billy/v5/memfs"
 	"github.com/go-git/go-billy/v5/osfs"
 	"github.com/go-git/go-billy/v5/util"
-	"github.com/go-git/go-git/v5/plumbing/cache"
-	"github.com/go-git/go-git/v5/storage/filesystem"
-	"github.com/go-git/go-git/v5/storage/memory"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/cache"
+	"github.com/lunarhue/metallic-flock-go-git/v5/storage/filesystem"
+	"github.com/lunarhue/metallic-flock-go-git/v5/storage/memory"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

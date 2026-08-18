@@ -7,12 +7,12 @@ import (
 	"testing"
 
 	"github.com/go-git/go-billy/v5/memfs"
-	"github.com/go-git/go-git/v5/config"
-	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/cache"
-	"github.com/go-git/go-git/v5/storage/filesystem"
-	"github.com/go-git/go-git/v5/storage/filesystem/dotgit"
-	"github.com/go-git/go-git/v5/storage/memory"
+	"github.com/lunarhue/metallic-flock-go-git/v5/config"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/cache"
+	"github.com/lunarhue/metallic-flock-go-git/v5/storage/filesystem"
+	"github.com/lunarhue/metallic-flock-go-git/v5/storage/filesystem/dotgit"
+	"github.com/lunarhue/metallic-flock-go-git/v5/storage/memory"
 
 	fixtures "github.com/go-git/go-git-fixtures/v4"
 	. "gopkg.in/check.v1"
