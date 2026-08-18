@@ -54,6 +54,7 @@ var (
 
 	ErrInvalidReference            = errors.New("invalid reference, should be a tag or a branch")
 	ErrRepositoryNotExists         = errors.New("repository does not exist")
+	ErrRepositoryNotFilesystem     = errors.New("repository is not backed by a filesystem")
 	ErrRepositoryIncomplete        = errors.New("repository's commondir path does not exist")
 	ErrRepositoryAlreadyExists     = errors.New("repository already exists")
 	ErrRemoteNotFound              = errors.New("remote not found")
