@@ -40,15 +40,23 @@ func (l *fsLoader) Load(ep *transport.Endpoint) (storer.Storer, error) {
 		return nil, err
 	}
 
-	var bare bool
-	if _, err := fs.Stat("config"); err == nil {
-		bare = true
-	}
-
-	if !bare {
+	if _, err := fs.Stat("config"); err != nil {
+		// Not a git directory, so this must be the WORK TREE of a non-bare
+		// repository, whose git directory is .git beneath it.
+		//
+		// Descending into it is the part that matters. Detecting .git and then
+		// building the storer on the work tree anyway — which is what this did —
+		// yields a storer over a directory holding no refs and no objects. The
+		// server then reports the repository as EMPTY rather than as missing, so a
+		// fetch against a non-bare origin succeeds while transferring nothing, and
+		// the caller sees a silent no-op instead of an error.
+		//
 		// do not use git.GitDirName due to import cycle
 		if _, err := fs.Stat(".git"); err != nil {
 			return nil, transport.ErrRepositoryNotFound
+		}
+		if fs, err = fs.Chroot(".git"); err != nil {
+			return nil, err
 		}
 	}
 
