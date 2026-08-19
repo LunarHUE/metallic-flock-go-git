@@ -1,7 +1,8 @@
+#!/usr/bin/env bash
 # NOTE: do not gofmt -w here. Upstream carries ~31 files with pre-existing
 # gofmt deviations (old-style doc-comment indentation). Reformatting them would
 # produce a large diff against upstream and conflict on every rebase — the exact
-# cost this split exists to avoid. The rename itself introduces no new ones.#!/usr/bin/env bash
+# cost this split exists to avoid. The rename itself introduces no new ones.
 # Rewrite the module path from upstream's to this fork's.
 #
 # Go resolves an import by its path, so a fork that keeps `module

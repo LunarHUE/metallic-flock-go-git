@@ -13,6 +13,7 @@ import (
 	"github.com/go-git/go-git/v5/plumbing/transport/internal/common"
 
 	"github.com/kevinburke/ssh_config"
+	"github.com/skeema/knownhosts"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/net/proxy"
 )
@@ -132,11 +133,24 @@ func (c *command) connect() error {
 		}
 		config.HostKeyCallback = db.HostKeyCallback()
 		config.HostKeyAlgorithms = db.HostKeyAlgorithms(hostWithPort)
-	} else {
-		// If the user gave a custom HostKeyCallback, we do not try to detect host key algorithms
-		// based on knownhosts functionality, as the user may be requesting a FixedKey or using a
-		// different key approval strategy. In that case, the user is responsible for populating
-		// HostKeyAlgorithms appropriately
+	} else if len(config.HostKeyAlgorithms) == 0 {
+		// The callback is set but the algorithms are not. If the auth method
+		// built that callback from known_hosts itself, derive the algorithms
+		// from the same database — otherwise the client advertises Go's default
+		// preference (RSA before Ed25519) and a server offering both presents a
+		// host key of a type known_hosts does not pin, which fails as
+		// "knownhosts: key mismatch" against a perfectly current entry.
+		//
+		// A user-supplied HostKeyCallback is left alone: it may be a FixedKey or
+		// another approval strategy, and populating HostKeyAlgorithms is then
+		// the user's responsibility.
+		if p, ok := c.auth.(interface {
+			KnownHostsDB() *knownhosts.HostKeyDB
+		}); ok {
+			if db := p.KnownHostsDB(); db != nil {
+				config.HostKeyAlgorithms = db.HostKeyAlgorithms(hostWithPort)
+			}
+		}
 	}
 
 	overrideConfig(c.config, config)

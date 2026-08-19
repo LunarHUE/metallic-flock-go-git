@@ -318,7 +318,26 @@ type HostKeyCallbackHelper struct {
 	// fallback allows for injecting the fallback call, which is called
 	// when a HostKeyCallback is not set.
 	fallback func(files ...string) (ssh.HostKeyCallback, error)
+
+	// khDB retains the known_hosts database this helper fell back to, so the
+	// dial path can derive HostKeyAlgorithms from it. The algorithms depend on
+	// the target host, which is not known here — only in command.connect. See
+	// KnownHostsDB.
+	khDB *knownhosts.HostKeyDB
 }
+
+// KnownHostsDB returns the known_hosts database this helper built for itself
+// when no HostKeyCallback was supplied, or nil when the caller supplied its own
+// callback (or injected a fallback).
+//
+// It exists so the dial path can pin HostKeyAlgorithms to the key types the
+// known_hosts file actually holds. Without that pin the client advertises Go's
+// default preference, which puts RSA ahead of Ed25519; a server offering both
+// then presents an RSA host key while known_hosts pins only Ed25519, and
+// verification fails with "knownhosts: key mismatch" even though the entry is
+// current. OpenSSH avoids this by ordering its host key algorithms by what it
+// already knows for the host, and this is the equivalent.
+func (m *HostKeyCallbackHelper) KnownHostsDB() *knownhosts.HostKeyDB { return m.khDB }
 
 // SetHostKeyCallbackAndAlgorithms sets the field HostKeyCallback and HostKeyAlgorithms in the given cfg.
 // If the host key callback or algorithms is empty it is left empty. It will be handled by the dial method,
@@ -330,7 +349,17 @@ func (m *HostKeyCallbackHelper) SetHostKeyCallbackAndAlgorithms(cfg *ssh.ClientC
 
 	if m.HostKeyCallback == nil {
 		if m.fallback == nil {
-			m.fallback = NewKnownHostsCallback
+			// Build the database rather than only its callback, and retain it:
+			// HostKeyAlgorithms must be derived from these same entries, and
+			// only the dial path knows which host to derive them for.
+			db, err := NewKnownHostsDb()
+			if err != nil {
+				return nil, fmt.Errorf("cannot create known hosts callback: %w", err)
+			}
+			m.khDB = db
+			cfg.HostKeyCallback = db.HostKeyCallback()
+			cfg.HostKeyAlgorithms = m.HostKeyAlgorithms
+			return cfg, nil
 		}
 
 		hkcb, err := m.fallback()
