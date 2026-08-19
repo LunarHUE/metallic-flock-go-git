@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/go-git/go-billy/v5"
-	"github.com/go-git/go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
 )
 
 // inProgressState lists the repository-metadata paths that mark a half-finished

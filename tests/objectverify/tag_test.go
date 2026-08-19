@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/go-git/go-git/v5"
+	"github.com/lunarhue/metallic-flock-go-git/v5"
 )
 
 func TestTagVerifyAlignment(t *testing.T) {

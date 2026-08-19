@@ -10,11 +10,11 @@ import (
 	"hash/crc32"
 	"io"
 
-	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/hash"
-	"github.com/go-git/go-git/v5/utils/binary"
-	"github.com/go-git/go-git/v5/utils/ioutil"
-	"github.com/go-git/go-git/v5/utils/sync"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/hash"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/binary"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/ioutil"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/sync"
 )
 
 var (

@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/go-git/go-git/v5/utils/merkletrie"
-	"github.com/go-git/go-git/v5/utils/merkletrie/noder"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/merkletrie"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/merkletrie/noder"
 )
 
 // The following functions transform changes types form the merkletrie
