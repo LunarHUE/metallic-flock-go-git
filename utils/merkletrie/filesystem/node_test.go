@@ -12,11 +12,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/filemode"
-	"github.com/go-git/go-git/v5/plumbing/format/index"
-	"github.com/go-git/go-git/v5/utils/merkletrie"
-	"github.com/go-git/go-git/v5/utils/merkletrie/noder"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/filemode"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/format/index"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/merkletrie"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/merkletrie/noder"
 
 	"github.com/go-git/go-billy/v5"
 	"github.com/go-git/go-billy/v5/memfs"

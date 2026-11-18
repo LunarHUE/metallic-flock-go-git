@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/go-git/go-git/v5/plumbing/transport"
-	"github.com/go-git/go-git/v5/plumbing/transport/internal/common"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/transport"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/transport/internal/common"
 
 	"github.com/kevinburke/ssh_config"
 	"github.com/skeema/knownhosts"

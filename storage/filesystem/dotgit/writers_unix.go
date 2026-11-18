@@ -4,7 +4,7 @@ package dotgit
 
 import (
 	"github.com/go-git/go-billy/v5"
-	"github.com/go-git/go-git/v5/utils/trace"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/trace"
 )
 
 func fixPermissions(fs billy.Filesystem, path string) {

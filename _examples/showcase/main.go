@@ -5,10 +5,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/go-git/go-git/v5"
-	"github.com/go-git/go-git/v5/plumbing/object"
+	"github.com/lunarhue/metallic-flock-go-git/v5"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/object"
 
-	. "github.com/go-git/go-git/v5/_examples"
+	. "github.com/lunarhue/metallic-flock-go-git/v5/_examples"
 )
 
 // Example of an specific use case:

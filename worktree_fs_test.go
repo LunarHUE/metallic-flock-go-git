@@ -16,10 +16,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/filemode"
-	"github.com/go-git/go-git/v5/plumbing/object"
-	"github.com/go-git/go-git/v5/plumbing/storer"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/filemode"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/object"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/storer"
 )
 
 // TestForceCheckoutReplacesLeadingSymlink covers the symlink-mask bypass

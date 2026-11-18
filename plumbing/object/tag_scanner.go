@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-git/go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
 )
 
 // tagScanner holds the working state of the tag decoder driven by the

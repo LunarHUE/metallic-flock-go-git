@@ -5,12 +5,12 @@ package client
 import (
 	"fmt"
 
-	"github.com/go-git/go-git/v5/plumbing/transport"
-	"github.com/go-git/go-git/v5/plumbing/transport/file"
-	"github.com/go-git/go-git/v5/plumbing/transport/git"
-	"github.com/go-git/go-git/v5/plumbing/transport/http"
-	"github.com/go-git/go-git/v5/plumbing/transport/server"
-	"github.com/go-git/go-git/v5/plumbing/transport/ssh"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/transport"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/transport/file"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/transport/git"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/transport/http"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/transport/server"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/transport/ssh"
 )
 
 // FileClient serves file:// endpoints from IN-PROCESS storage.

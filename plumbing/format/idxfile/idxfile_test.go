@@ -10,8 +10,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/format/idxfile"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/format/idxfile"
 
 	fixtures "github.com/go-git/go-git-fixtures/v4"
 	"github.com/stretchr/testify/require"

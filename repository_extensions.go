@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/go-git/go-git/v5/config"
-	cfgformat "github.com/go-git/go-git/v5/plumbing/format/config"
-	"github.com/go-git/go-git/v5/storage"
+	"github.com/lunarhue/metallic-flock-go-git/v5/config"
+	cfgformat "github.com/lunarhue/metallic-flock-go-git/v5/plumbing/format/config"
+	"github.com/lunarhue/metallic-flock-go-git/v5/storage"
 )
 
 var (

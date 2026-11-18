@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/hash"
-	"github.com/go-git/go-git/v5/plumbing/storer"
-	"github.com/go-git/go-git/v5/utils/binary"
-	"github.com/go-git/go-git/v5/utils/ioutil"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/hash"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/storer"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/binary"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/ioutil"
 )
 
 // Encoder gets the data from the storage and write it into the writer in PACK

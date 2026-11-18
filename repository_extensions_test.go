@@ -6,9 +6,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/go-git/go-git/v5/config"
-	formatcfg "github.com/go-git/go-git/v5/plumbing/format/config"
-	"github.com/go-git/go-git/v5/storage/memory"
+	"github.com/lunarhue/metallic-flock-go-git/v5/config"
+	formatcfg "github.com/lunarhue/metallic-flock-go-git/v5/plumbing/format/config"
+	"github.com/lunarhue/metallic-flock-go-git/v5/storage/memory"
 )
 
 func TestVerifyExtensions(t *testing.T) {

@@ -1,4 +1,4 @@
-module github.com/go-git/go-git/v5
+module github.com/lunarhue/metallic-flock-go-git/v5
 
 go 1.25.0
 

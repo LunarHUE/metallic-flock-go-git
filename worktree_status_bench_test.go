@@ -10,7 +10,7 @@ import (
 	"github.com/go-git/go-billy/v5/util"
 	"github.com/stretchr/testify/require"
 
-	"github.com/go-git/go-git/v5/plumbing/object"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/object"
 )
 
 // setupBenchmarkRepo creates a test repository with the specified number of files.

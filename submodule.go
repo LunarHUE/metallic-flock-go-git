@@ -9,12 +9,12 @@ import (
 	"path/filepath"
 
 	"github.com/go-git/go-billy/v5"
-	"github.com/go-git/go-git/v5/config"
-	"github.com/go-git/go-git/v5/internal/pathutil"
-	giturl "github.com/go-git/go-git/v5/internal/url"
-	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/format/index"
-	"github.com/go-git/go-git/v5/plumbing/transport"
+	"github.com/lunarhue/metallic-flock-go-git/v5/config"
+	"github.com/lunarhue/metallic-flock-go-git/v5/internal/pathutil"
+	giturl "github.com/lunarhue/metallic-flock-go-git/v5/internal/url"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/format/index"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/transport"
 )
 
 var (

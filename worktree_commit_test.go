@@ -11,12 +11,12 @@ import (
 	"time"
 
 	fixtures "github.com/go-git/go-git-fixtures/v4"
-	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/cache"
-	"github.com/go-git/go-git/v5/plumbing/object"
-	"github.com/go-git/go-git/v5/plumbing/storer"
-	"github.com/go-git/go-git/v5/storage/filesystem"
-	"github.com/go-git/go-git/v5/storage/memory"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/cache"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/object"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/storer"
+	"github.com/lunarhue/metallic-flock-go-git/v5/storage/filesystem"
+	"github.com/lunarhue/metallic-flock-go-git/v5/storage/memory"
 
 	"github.com/ProtonMail/go-crypto/openpgp"
 	"github.com/ProtonMail/go-crypto/openpgp/armor"

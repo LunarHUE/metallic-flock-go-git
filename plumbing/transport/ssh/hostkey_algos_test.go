@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/go-git/go-git/v5/plumbing/transport"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/transport"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/crypto/ssh/knownhosts"
 )

@@ -6,12 +6,12 @@ import (
 	"github.com/go-git/go-billy/v5/memfs"
 	"github.com/stretchr/testify/require"
 
-	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/filemode"
-	"github.com/go-git/go-git/v5/plumbing/format/gitignore"
-	"github.com/go-git/go-git/v5/plumbing/format/index"
-	"github.com/go-git/go-git/v5/utils/merkletrie"
-	mindex "github.com/go-git/go-git/v5/utils/merkletrie/index"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/filemode"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/format/gitignore"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing/format/index"
+	"github.com/lunarhue/metallic-flock-go-git/v5/utils/merkletrie"
+	mindex "github.com/lunarhue/metallic-flock-go-git/v5/utils/merkletrie/index"
 )
 
 // blobHash returns the hash a Git blob would have for the given content.

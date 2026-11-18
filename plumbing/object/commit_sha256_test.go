@@ -6,7 +6,7 @@ package object
 import (
 	"testing"
 
-	"github.com/go-git/go-git/v5/plumbing"
+	"github.com/lunarhue/metallic-flock-go-git/v5/plumbing"
 )
 
 func TestDecodeCommitSHA256ObjectIDs(t *testing.T) {
