@@ -4,10 +4,12 @@ import (
 	"io"
 	"os"
 	"path"
+	"strings"
 	"time"
 
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/filemode"
+	"github.com/go-git/go-git/v5/plumbing/format/gitignore"
 	"github.com/go-git/go-git/v5/plumbing/format/index"
 	"github.com/go-git/go-git/v5/utils/merkletrie/noder"
 
@@ -24,6 +26,15 @@ type Options struct {
 	// correctly handling the "racy git" condition. If no index is provided,
 	// the function works without the optimization.
 	Index *index.Index
+
+	// IgnoreMatcher, if non-nil, is consulted while walking the tree.
+	// Untracked entries (files or directories) that match the matcher are
+	// excluded from the walk so callers do not have to descend into large
+	// gitignored directories like node_modules. Tracked entries are always
+	// walked even if they match, so modifications to them are still
+	// reported. Requires Index to be set: without an index there is no way
+	// to identify tracked entries, so the matcher is treated as a no-op.
+	IgnoreMatcher gitignore.Matcher
 }
 
 // The node represents a file or a directory in a billy.Filesystem. It
@@ -36,6 +47,12 @@ type node struct {
 	submodules map[string]plumbing.Hash
 	idx        *index.Index
 	idxMap     map[string]*index.Entry
+	// trackedDirs holds every directory path that has at least one entry
+	// in the index. It is populated only when IgnoreMatcher is set so the
+	// walker can keep tracked entries even if their parent directory
+	// matches an ignore rule.
+	trackedDirs map[string]struct{}
+	ignore      gitignore.Matcher
 
 	path     string
 	hash     []byte
@@ -75,20 +92,35 @@ func NewRootNodeWithOptions(
 	options Options,
 ) noder.Noder {
 	var idxMap map[string]*index.Entry
+	var trackedDirs map[string]struct{}
 
 	if options.Index != nil {
 		idxMap = make(map[string]*index.Entry, len(options.Index.Entries))
 		for _, entry := range options.Index.Entries {
 			idxMap[entry.Name] = entry
 		}
+
+		if options.IgnoreMatcher != nil {
+			trackedDirs = make(map[string]struct{})
+			for _, entry := range options.Index.Entries {
+				for parent := path.Dir(entry.Name); parent != "." && parent != "/"; parent = path.Dir(parent) {
+					if _, ok := trackedDirs[parent]; ok {
+						break
+					}
+					trackedDirs[parent] = struct{}{}
+				}
+			}
+		}
 	}
 
 	return &node{
-		fs:         fs,
-		submodules: submodules,
-		idx:        options.Index,
-		idxMap:     idxMap,
-		isDir:      true,
+		fs:          fs,
+		submodules:  submodules,
+		idx:         options.Index,
+		idxMap:      idxMap,
+		trackedDirs: trackedDirs,
+		ignore:      options.IgnoreMatcher,
+		isDir:       true,
 	}
 }
 
@@ -163,6 +195,10 @@ func (n *node) calculateChildren() error {
 			continue
 		}
 
+		if n.shouldSkipIgnored(file.Name(), file.IsDir()) {
+			continue
+		}
+
 		c, err := n.newChildNode(file)
 		if err != nil {
 			return err
@@ -174,14 +210,48 @@ func (n *node) calculateChildren() error {
 	return nil
 }
 
+// shouldSkipIgnored reports whether the child entry of n with the given
+// name should be skipped because it matches the configured ignore matcher
+// AND has no entry in the index. Tracked entries are never skipped so
+// modifications to them are still reported.
+func (n *node) shouldSkipIgnored(name string, isDir bool) bool {
+	if n.ignore == nil {
+		return false
+	}
+	// Without an index we cannot prove that a subtree contains no tracked
+	// entries, so refuse to skip. This matches the documented contract on
+	// Options.IgnoreMatcher.
+	if n.idxMap == nil {
+		return false
+	}
+	childPath := path.Join(n.path, name)
+	if !n.ignore.Match(strings.Split(childPath, "/"), isDir) {
+		return false
+	}
+	// An entry whose own path is in the index is tracked, regardless of
+	// whether it is a regular file or a directory-shaped entry such as a
+	// submodule. Submodule entries' paths are *not* added to trackedDirs
+	// (which only records parent chains), so this check has to come first.
+	if _, tracked := n.idxMap[childPath]; tracked {
+		return false
+	}
+	if isDir {
+		_, hasTrackedDescendant := n.trackedDirs[childPath]
+		return !hasTrackedDescendant
+	}
+	return true
+}
+
 func (n *node) newChildNode(file os.FileInfo) (*node, error) {
 	path := path.Join(n.path, file.Name())
 
 	node := &node{
-		fs:         n.fs,
-		submodules: n.submodules,
-		idx:        n.idx,
-		idxMap:     n.idxMap,
+		fs:          n.fs,
+		submodules:  n.submodules,
+		idx:         n.idx,
+		idxMap:      n.idxMap,
+		trackedDirs: n.trackedDirs,
+		ignore:      n.ignore,
 
 		path:    path,
 		isDir:   file.IsDir(),
